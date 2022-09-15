@@ -1,0 +1,10 @@
+{
+  "files": {
+    "main.js": "/burgerapp/static/js/main.54e25475.js",
+    "index.html": "/burgerapp/index.html",
+    "main.54e25475.js.map": "/burgerapp/static/js/main.54e25475.js.map"
+  },
+  "entrypoints": [
+    "static/js/main.54e25475.js"
+  ]
+}
