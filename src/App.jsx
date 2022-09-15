@@ -1,12 +1,9 @@
-import Ingredients from "./components/Ingredients/Ingredients";
-import { Box, styled } from '@mui/material'
+import BurgerBuilder from "./pages/BurgerBuilder";
 
 function App() {
 
   return (
-    <>
-    <Ingredients/>
-    </>
+    <BurgerBuilder />
   );
 }
 
