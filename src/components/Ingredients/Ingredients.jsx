@@ -1,4 +1,5 @@
 import { Box, styled } from '@mui/material'
+import { forwardRef, useImperativeHandle, useState } from 'react';
 
 const BurgerTop = styled(Box)({
   height: 130,
@@ -30,6 +31,7 @@ const Bacon = styled(Box)({
   background: 'brown',
   marginTop: '12px'
 })
+
 const Cheese = styled(Box)({
   height: 30,
   width: 700,
@@ -37,6 +39,7 @@ const Cheese = styled(Box)({
   borderRadius: '20px',
   marginTop: '12px'
 })
+
 const Meat = styled(Box)({
   height: 50,
   width: 600,
@@ -46,28 +49,79 @@ const Meat = styled(Box)({
 })
 
 const Container = styled(Box)({
-  display: 'flex',
-  flexDirection: 'column',
-  justifyContent: 'flex-start',
-  alignItems: 'center'
-
+  textAlign: "-webkit-center",
+  height: 550,
+  overflowY: 'scroll',
 })
 
+const Ingredients = forwardRef((props, ref) => {
 
-const Ingredients = () => {
+  const [lettuceState, setLettuceState] = useState(0)
+  const [baconState, setBaconState] = useState(0)
+  const [cheeseState, setCheeseState] = useState(0)
+  const [meatState, setMeatState] = useState(0)
+
+  const render_component = (element, count) => {
+    let arr = []
+    for (var i = 0; i < count; i++)
+      arr.push(element)
+    return arr
+  }
+
+  useImperativeHandle(ref, () => ({
+    Addingredients(type) {
+      switch (type) {
+        case 'lettuce':
+          setLettuceState(prev => prev + 1)
+          break
+        case 'bacon':
+          setBaconState(prev => prev + 1)
+          break
+        case 'cheese':
+          setCheeseState(prev => prev + 1)
+          break
+        case 'meat':
+          setMeatState(prev => prev + 1)
+          break
+        default:
+          break;
+      }
+    },
+
+    Removeingredients(type) {
+      switch (type) {
+        case 'lettuce':
+          if (lettuceState > 0)
+            setLettuceState(prev => prev - 1)
+          break
+        case 'bacon':
+          if (baconState > 0)
+            setBaconState(prev => prev - 1)
+          break
+        case 'cheese':
+          if (cheeseState > 0)
+            setCheeseState(prev => prev - 1)
+          break
+        case 'meat':
+          if (meatState > 0)
+            setMeatState(prev => prev - 1)
+          break
+        default:
+          break
+      }
+    },
+  }));
+
   return (
-    <>
-      <Container>
-        <BurgerTop />
-        <Lettuce />
-        <Bacon />
-        <Cheese />
-        <Meat />
-        <BurgerBottom />
-      </Container>
-    </>
-
+    <Container>
+      <BurgerTop />
+      {render_component(<Lettuce />, lettuceState)}
+      {render_component(<Bacon />, baconState)}
+      {render_component(<Cheese />, cheeseState)}
+      {render_component(<Meat />, meatState)}
+      <BurgerBottom />
+    </Container>
   )
-}
+})
 
 export default Ingredients
