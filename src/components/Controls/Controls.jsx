@@ -37,6 +37,7 @@ const MyButton = styled(Button)({
   marginLeft: '15px',
   marginRight: '10px',
   marginTop: '15px',
+  marginBottom: '0px',
 })
 
 const Controls = (props) => {

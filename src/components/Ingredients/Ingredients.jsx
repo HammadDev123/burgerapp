@@ -7,6 +7,7 @@ const BurgerTop = styled(Box)({
   background: '#ef6c00',
   borderRadius: '50% 50% 0 0',
   marginTop: '12px',
+  marginBottom: '0px',
 })
 
 const BurgerBottom = styled(Box)({

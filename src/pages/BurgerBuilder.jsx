@@ -6,6 +6,7 @@ const BurgerBuilder = () => {
 
   const onAddIngredients = (type) => {
     childRef.current.Addingredients(type);
+    console.log('hello world')
   }
 
   const onRemoveIngredients = (type) => {
